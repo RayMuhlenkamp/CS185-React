@@ -1,0 +1,147 @@
+.page {
+    background-color: cornsilk;
+}
+
+.nav_bar {
+    display: flex;
+    background-color: cornflowerblue;
+}
+.nav_bar a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav_bar a:hover {
+    background-color: rgb(123, 134, 231);
+}
+
+.nav_bar a.active {
+    background-color: burlywood;
+}
+
+.main_body {
+    display: flex;
+    background-color: burlywood;
+}
+
+.content_grid{
+    background-color: burlywood;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+}
+
+.content_holder{
+    margin: auto;
+    border: 2px solid black;
+}
+
+.img{
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.vid {
+    display: block;
+    max-width: 100%;
+    max-height: 500px;
+    height: auto;
+}
+
+.bg_green{
+    background-color: darkgreen;
+}
+
+.span2c{
+    grid-column: span 2;
+}
+
+.span2r{
+    grid-row: span 2;
+}
+
+.span3r{
+    grid-row: span 3;
+}
+
+.main_body > div {
+    padding: 10px;
+}
+
+/* The Modal (background) 
+    modified from W3Schools article on modal representation
+    for images: https://www.w3schools.com/howto/howto_css_modal_images.asp
+
+*/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    top: 0;
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  }
+  
+  /* Modal Content (image) */
+  .modalContent {
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #scrollButton {
+      display: none;
+      position: fixed;
+      bottom: 15px;
+      right: 20px;
+      border: none;
+      outline: none;
+      background-color: cornflowerblue;
+      color: black;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 5px;
+  }
+
+  #scrollButton:hover{
+      background-color: rgb(150, 182, 240);
+  }
+
+  .centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
