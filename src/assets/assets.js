@@ -18,6 +18,6 @@ const imagesArray = [
     {id: 14, src: require("../assets/image/tshirt_yellow.png"), alt: ""},
 ]
 
-const images = imagesArray.map(({id, src, alt}) => <img key={id} src={src} alt={alt} />)
+const images = imagesArray.map(({id, src, alt}) => <img key={id} src={src} alt={alt} class="img" />)
 
 export default images;

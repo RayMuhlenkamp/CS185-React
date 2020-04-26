@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import '../css/style.css';
 import images from "../assets/assets"
+import NavBar from '../NavBar';
 
-class HomePage extends Component {
+class Home extends Component {
     render() {
         return(
             
@@ -10,17 +11,12 @@ class HomePage extends Component {
                 <div className="header">
                     <h1>Welcome to my portfolio</h1>
                 </div>
-
-                <div className="nav_bar">
-                    <a className="active" href="index.html">Home</a>
-                    <a href="images.html">Images</a>
-                    <a href="videos.html">Videos</a>
-                    <a href="playlists.html">Playlists</a>
-                </div>
+                
+                <NavBar active="home"/>
 
                 <div className="main_body">  
                     <div>
-                        {images[7]}
+                        <img src={require("../assets/image/ray_linkedin.jpg")} />
                     </div>
 
                     <div>
@@ -37,4 +33,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default Home;
