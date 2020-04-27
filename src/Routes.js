@@ -6,21 +6,22 @@ import Playlists from "./containers/playlists/Playlists";
 import Videos from "./containers/videos/Videos";
 
 export default function Routes() {
+  const SCOPE = "/cs185-react"
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path={SCOPE + "/"}>
         <Home />
       </Route>
       
-      <Route exact path="/images">
+      <Route exact path={SCOPE + "/images"}>
         <Images/>
       </Route>
 
-      <Route exact path="/videos">
+      <Route exact path={SCOPE + "/videos"}>
         <Videos/>
       </Route>
 
-      <Route exact path="/playlists">
+      <Route exact path={SCOPE + "/playlists"}>
         <Playlists/>
       </Route>
     </Switch>
