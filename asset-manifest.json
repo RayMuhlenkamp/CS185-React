@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/cs185-react/static/css/main.a2f357df.chunk.css",
+    "main.js": "/cs185-react/static/js/main.6260570e.chunk.js",
+    "main.js.map": "/cs185-react/static/js/main.6260570e.chunk.js.map",
+    "runtime-main.js": "/cs185-react/static/js/runtime-main.f225555f.js",
+    "runtime-main.js.map": "/cs185-react/static/js/runtime-main.f225555f.js.map",
+    "static/js/2.25486c49.chunk.js": "/cs185-react/static/js/2.25486c49.chunk.js",
+    "static/js/2.25486c49.chunk.js.map": "/cs185-react/static/js/2.25486c49.chunk.js.map",
+    "index.html": "/cs185-react/index.html",
+    "precache-manifest.913def6ae7ad976f48eae4a69b047347.js": "/cs185-react/precache-manifest.913def6ae7ad976f48eae4a69b047347.js",
+    "service-worker.js": "/cs185-react/service-worker.js",
+    "static/css/main.a2f357df.chunk.css.map": "/cs185-react/static/css/main.a2f357df.chunk.css.map",
+    "static/js/2.25486c49.chunk.js.LICENSE.txt": "/cs185-react/static/js/2.25486c49.chunk.js.LICENSE.txt",
+    "static/media/IMG_1328.MOV": "/cs185-react/static/media/IMG_1328.9ccd2235.MOV",
+    "static/media/catsper.mp4": "/cs185-react/static/media/catsper.23045880.mp4",
+    "static/media/facekick.mp4": "/cs185-react/static/media/facekick.113ddc20.mp4",
+    "static/media/im_champ1.jpg": "/cs185-react/static/media/im_champ1.70f446f6.jpg",
+    "static/media/im_champ2.jpg": "/cs185-react/static/media/im_champ2.857c802c.jpg",
+    "static/media/im_champ3.jpg": "/cs185-react/static/media/im_champ3.9976372e.jpg",
+    "static/media/iv_music1.jpg": "/cs185-react/static/media/iv_music1.6470e251.jpg",
+    "static/media/iv_music2.jpg": "/cs185-react/static/media/iv_music2.a809664a.jpg",
+    "static/media/mom.jpg": "/cs185-react/static/media/mom.3e694995.jpg",
+    "static/media/polaroid.jpg": "/cs185-react/static/media/polaroid.ae360914.jpg",
+    "static/media/ray_linkedin.jpg": "/cs185-react/static/media/ray_linkedin.f727a276.jpg",
+    "static/media/seattle1.jpg": "/cs185-react/static/media/seattle1.e2daab4c.jpg",
+    "static/media/seattle2.jpg": "/cs185-react/static/media/seattle2.c7a5f3a1.jpg",
+    "static/media/seattle3.jpg": "/cs185-react/static/media/seattle3.ee0678fc.jpg",
+    "static/media/soccer.jpg": "/cs185-react/static/media/soccer.c7a7a0e3.jpg",
+    "static/media/spoider.mp4": "/cs185-react/static/media/spoider.57eb432b.mp4",
+    "static/media/tshirt_black.png": "/cs185-react/static/media/tshirt_black.27dae32a.png",
+    "static/media/tshirt_white.png": "/cs185-react/static/media/tshirt_white.aafe44bf.png",
+    "static/media/tshirt_yellow.png": "/cs185-react/static/media/tshirt_yellow.423b9712.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f225555f.js",
+    "static/js/2.25486c49.chunk.js",
+    "static/css/main.a2f357df.chunk.css",
+    "static/js/main.6260570e.chunk.js"
+  ]
+}
