@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Home from "./containers/Home";
-import Images from "./containers/Images";
-import Playlists from "./containers/Playlists";
-import Videos from "./containers/Videos";
+import Home from "./containers/home/Home";
+import Images from "./containers/images/Images";
+import Playlists from "./containers/playlists/Playlists";
+import Videos from "./containers/videos/Videos";
 
 export default function Routes() {
   return (

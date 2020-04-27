@@ -4,12 +4,16 @@ import ReactDOM from 'react-dom';
 import './css/index.css';
 import * as serviceWorker from './serviceWorker';
 
+import SimpleReactLighbox from "simple-react-lightbox"
 import App from './App'
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <SimpleReactLighbox>
+    <Router>
+      <App />
+    </Router>
+  </SimpleReactLighbox>,
+  
   document.getElementById('root')
 );
 
