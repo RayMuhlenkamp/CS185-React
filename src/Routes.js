@@ -4,6 +4,7 @@ import Home from "./containers/home/Home";
 import Images from "./containers/images/Images";
 import Playlists from "./containers/playlists/Playlists";
 import Videos from "./containers/videos/Videos";
+import Guest from "./containers/guest/Guest";
 
 export default function Routes() {
   const SCOPE = "/cs185-react"
@@ -23,6 +24,10 @@ export default function Routes() {
 
       <Route exact path={SCOPE + "/playlists"}>
         <Playlists/>
+      </Route>
+
+      <Route exact path={SCOPE + "/guest_book"}>
+        <Guest/>
       </Route>
     </Switch>
   );

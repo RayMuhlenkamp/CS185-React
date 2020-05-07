@@ -2,18 +2,13 @@ import React, { Component } from 'react';
 import './css/style.css';
 import { Link } from 'react-router-dom';
 
-// Note for instructors: I am not creating Tab components, as it was much 
-// more streamlined to just have them be individual Link components,
-// since I am using React Router for my page loading/management. 
-// If this is an issue I can always create a wrapper Tab component and pass
-// in the props as neccessary, but I feel like that is overengineering it
-// for my setup. 
 class TabList extends Component {
     render(){
         var home=""
         var images="" 
         var videos=""
         var playlists=""
+        var guest=""
         switch (this.props.activeTab) {
             case "home":
                 home = "active"
@@ -27,6 +22,9 @@ class TabList extends Component {
             case "playlists":
                 playlists = "active"
                 break;
+            case "guest":
+                guest = "active"
+                break;
             default:
         }
 
@@ -36,6 +34,7 @@ class TabList extends Component {
                 <Link className={images} to="/cs185-react/images">Images</Link>
                 <Link className={videos} to="/cs185-react/videos">Videos</Link>
                 <Link className={playlists} to="/cs185-react/playlists">Playlists</Link>
+                <Link className={guest} to="/cs185-react/guest_book">Guest Book</Link>
             </div>
         );
     }
