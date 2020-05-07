@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+const firebase = require('firebase')
 
 class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {name: '',
-                      description: '',
+                      bio: '',
                       message: '',
                       viewable: false,
                       email: ''};
@@ -32,8 +33,8 @@ class Form extends Component {
             alert("Name must be less than 20 characters.")
             return;
         }
-        else if (this.state.description.length >= 100) {
-            alert("Description must be less than 100 characters.")
+        else if (this.state.bio.length >= 100) {
+            alert("Bio must be less than 100 characters.")
             return;
         }
         else if (this.state.message.length <= 15) {
@@ -45,7 +46,9 @@ class Form extends Component {
             return;
         }
 
-        console.log(this.state);
+        firebase.database().ref('data').push().set(this.state)
+        this.props.callback(true);
+        alert("Successful submission")
     }
 
     handleInputChange(event) {
@@ -60,9 +63,9 @@ class Form extends Component {
                 return;
             }
         }
-        else if (name==="description") {
+        else if (name==="bio") {
             if (value.length >= 100) {
-                alert("Description must be less than 100 characters.")
+                alert("Bio must be less than 100 characters.")
                 return;
             }
         }
@@ -94,12 +97,12 @@ class Form extends Component {
                     </label>
                     <br/>
                     <label>
-                        Description (optional):
+                        Bio (optional):
                         <br/>
                         <input 
-                            name="description"
+                            name="bio"
                             type="text"
-                            value={this.state.description}
+                            value={this.state.bio}
                             onChange={this.handleInputChange} />
                             <br/>
                     </label>
