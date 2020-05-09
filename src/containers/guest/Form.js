@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
+import '../../css/guest.css';
+
 const firebase = require('firebase')
+
 
 class Form extends Component {
     constructor(props) {
         super(props);
+        const timestamp = Date.now(); // This would be the timestamp you want to format
+        const date = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp);
         this.state = {name: '',
                       bio: '',
                       message: '',
                       viewable: false,
-                      email: ''};
-    
+                      email: '',
+                      date: date};
+        console.log(this.state)
+
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
     handleFormSubmit(event) {
         event.preventDefault();
-
         if (this.state.name === '') {
             alert("Name must not be blank.")
             return;
@@ -46,13 +52,23 @@ class Form extends Component {
             return;
         }
 
+        const timestamp = Date.now(); // This would be the timestamp you want to format
+        const date = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp);
+        this.state.date = date
         firebase.database().ref('data').push().set(this.state)
+        
+        this.setState({name: '',
+                      bio: '',
+                      message: '',
+                      viewable: false,
+                      email: '',
+                      date: null})
+                      
         this.props.callback(true);
         alert("Successful submission")
     }
 
     handleInputChange(event) {
-        const temp = this.state;
         const target = event.target;
         const name = target.name;
         const value = name === "viewable" ? target.checked : target.value;
@@ -80,18 +96,18 @@ class Form extends Component {
             [name]: value
         });
     }
-
     render () {
         return (
-            <div>
-                <form onSubmit={this.handleFormSubmit}>
+            <div >
+                <form className="form" onSubmit={this.handleFormSubmit}>
                     <label>
                         Name:
                         <br/>
-                        <input 
+                        <input
+                            className="textinput"
                             name="name"
                             type="text"
-                            value={this.state.namevalue}
+                            value={this.state.name}
                             onChange={this.handleInputChange} />
                             <br/>
                     </label>
@@ -99,9 +115,8 @@ class Form extends Component {
                     <label>
                         Bio (optional):
                         <br/>
-                        <input 
+                        <textarea 
                             name="bio"
-                            type="text"
                             value={this.state.bio}
                             onChange={this.handleInputChange} />
                             <br/>
@@ -110,9 +125,8 @@ class Form extends Component {
                     <label>
                         Message:
                         <br/>
-                        <input 
+                        <textarea 
                             name="message"
-                            type="text"
                             value={this.state.message}
                             onChange={this.handleInputChange} />
                             <br/>
@@ -121,6 +135,7 @@ class Form extends Component {
                     <label>
                         Make public?: 
                         <input 
+                            className="check"
                             name="viewable"
                             type="checkbox"
                             checked={this.state.viewable}
@@ -130,9 +145,10 @@ class Form extends Component {
                     </label>
                     <br/>
                     <label>
-                        Email (optional):
+                        Email (optional, will not be public):
                         <br/>
                         <input 
+                            className="textinput"
                             name="email"
                             type="text"
                             value={this.state.email}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Form from "./Form"
 import Book from "./Book"
-import '../../css/style.css';
+import '../../css/guest.css';
 import config from "../../config"
 const firebase = require('firebase')
 
@@ -28,7 +28,7 @@ class GuestContent extends Component {
                 let keys = Object.keys(snap)
                 let data = []
                 keys.forEach((key) => { data.push(snap[key]) })
-                this.setState({data: data,
+                this.setState({data: data.filter(this.filterViewable),
                             shouldUpdate: false})
             }
         })
@@ -43,16 +43,20 @@ class GuestContent extends Component {
                     let keys = Object.keys(snap)
                     let data = []
                     keys.forEach((key) => { data.push(snap[key]) })
-                    this.setState({data: data,
+                    this.setState({data: data.filter(this.filterViewable),
                                 shouldUpdate: false})
                 }
             })
         }
     }
 
+    filterViewable(msg) {
+        return msg.viewable;
+    }
+
     render() {
         return(
-            <div className="main_body">  
+            <div className="main_form">  
                 <Form callback={this.messageSubmit}/>
                 <Book data={this.state.data}/>
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Message from './Message';
 
 class Book extends Component {
     constructor(props) {
@@ -10,12 +11,14 @@ class Book extends Component {
     render () {
         console.log(this.props.data)
         return(
-            <div>
-                {this.props.data.map((item, index) => (
-                    <p>{item.message}</p>
-                ))}
+            <div >
+                <div className="book">
+                    <hr className="book_hr"/>
+                    {this.props.data.map((item) => (
+                        <Message name={item.name} bio={item.bio} message={item.message} date={item.date}/>
+                    ))}
+                </div>
             </div>
-            
         )
 
     }
