@@ -9,6 +9,7 @@ class TabList extends Component {
         var videos=""
         var playlists=""
         var guest=""
+        var movies=""
         switch (this.props.activeTab) {
             case "home":
                 home = "active"
@@ -25,6 +26,9 @@ class TabList extends Component {
             case "guest":
                 guest = "active"
                 break;
+            case "movies":
+                movies = "active"
+                break;
             default:
         }
 
@@ -35,6 +39,7 @@ class TabList extends Component {
                 <Link className={videos} to="/cs185-react/videos">Videos</Link>
                 <Link className={playlists} to="/cs185-react/playlists">Playlists</Link>
                 <Link className={guest} to="/cs185-react/guest_book">Guest Book</Link>
+                <Link className={movies} to="/cs185-react/movies">Movies</Link>
             </div>
         );
     }
