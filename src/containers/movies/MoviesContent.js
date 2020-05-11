@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import Movie from "./Movie"
+import { SRLWrapper } from "simple-react-lightbox";
 import '../../css/style.css';
-import { moviesKEY } from '../../config'
+
+const IDs = ["tt0446029", "tt1659337", "tt2584384", "tt0111161", "tt0102926", 
+             "tt0407887", "tt1853728", "tt0120601"]
 
 class MoviesContent extends Component {
     constructor(props) {
@@ -9,35 +13,14 @@ class MoviesContent extends Component {
 
     render() {
         return(
-            <div className="content_grid">
-                <div className="content_holder">
-                    <iframe className="playlist" src="https://open.spotify.com/embed/playlist/5Uhlzklmcnl8jRYh7cxdgX" width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <SRLWrapper >
+                <div className="content_grid">
+                    {IDs.map((item) => (
+                        <Movie id={item}/>
+                    ))}
                 </div>
-
-                <div className="content_holder">
-                    <iframe className="playlist" src="https://open.spotify.com/embed/playlist/78KwttLhfegWgn3AwxxgEE" width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>    
-                </div>
-
-                <div className="content_holder">
-                    <iframe className="playlist" src="https://open.spotify.com/embed/playlist/52dhfbnG3iKesB3pjJJNmr" width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>    
-                </div>
-
-                <div className="content_holder">
-                    <iframe className="playlist" src="https://open.spotify.com/embed/playlist/3t6OGkyJEFLJMW3pLbtde8" width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>    
-                </div>
-
-                <div className="content_holder">
-                    <iframe className="playlist" src="https://open.spotify.com/embed/playlist/56qSt2tlxP25Chg3jMF5dD" width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>        
-                </div>
-
-                <div className="content_holder">
-                    <iframe className="playlist" src="https://open.spotify.com/embed/playlist/5hk1HuLPZrrYK5jQRCBtiW" width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>        
-                </div>
-
-                <div className="content_holder">
-                    <iframe className="playlist" src="https://open.spotify.com/embed/playlist/3ccZZQRqBzg1AWfK248Bzr" width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>        
-                </div>
-            </div>
+            </SRLWrapper>
+            
         );
   }
 }

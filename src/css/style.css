@@ -36,6 +36,7 @@
 }
 
 .content_holder{
+    background-color: white;
     margin: auto;
     border: 2px solid black;
 }
@@ -45,6 +46,10 @@
     width: 100%;
     height: auto;
     cursor: pointer;
+}
+
+.img:hover {
+    opacity: .8;
 }
 
 .vid {
@@ -59,7 +64,7 @@
 }
 
 .bg_green{
-    background-color: darkgreen;
+    background-color: darkgreen !important;
 }
 
 .span2c{
