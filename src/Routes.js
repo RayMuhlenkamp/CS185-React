@@ -8,7 +8,7 @@ import Guest from "./containers/guest/Guest";
 import Movies from "./containers/movies/Movies";
 
 export default function Routes() {
-  const SCOPE = "/cs185-react"
+  const SCOPE = process.env.PUBLIC_URL;
   return (
     <Switch>
       <Route exact path={SCOPE + "/"}>

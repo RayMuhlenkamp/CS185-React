@@ -12,7 +12,7 @@ class Movie extends Component {
     }
 
     componentWillMount() {
-        axios.get("http://www.omdbapi.com/" , {
+        axios.get("https://www.omdbapi.com/" , {
             params: {
                 apikey: moviesKEY,
                 i: this.props.id
