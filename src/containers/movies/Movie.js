@@ -34,9 +34,14 @@ class Movie extends Component {
                 </div>
             )
         }
+
+        const title = "Title: " + this.state.data.Title + "\n";
+        const director = "Director: " + this.state.data.Director + "\n";
+        const rating = "Rating: " + this.state.data.imdbRating;
+        const alt = title+director+rating;
         return(
             <div className="content_holder">
-                <img className="img" src={this.state.data.Poster}/>
+                <img className="img" src={this.state.data.Poster} alt={alt} />
             </div>
         );
   }
