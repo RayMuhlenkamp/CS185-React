@@ -83,52 +83,6 @@
     padding: 10px;
 }
 
-/* The Modal (background) 
-    modified from W3Schools article on modal representation
-    for images: https://www.w3schools.com/howto/howto_css_modal_images.asp
-
-*/
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    top: 0;
-    width: 100vw; /* Full width */
-    height: 100vh; /* Full height */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-  }
-  
-  /* Modal Content (image) */
-  .modalContent {
-    display: block;
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  /* The Close Button */
-.close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-  }
 
   #scrollButton {
       display: none;

@@ -41,7 +41,7 @@ class TabList extends Component {
                 <Link className={videos} to={SCOPE+"/videos"}>Videos</Link>
                 <Link className={playlists} to={SCOPE+"/playlists"}>Playlists</Link>
                 <Link className={guest} to={SCOPE+"/guest_book"}>Guest Book</Link>
-                <Link className={movies} to={SCOPE+"/movies"}>Movies</Link>
+                <Link className={movies} to={SCOPE+"/movies/list"}>Movies</Link>
             </div>
         );
     }

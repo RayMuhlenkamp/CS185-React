@@ -3,20 +3,29 @@ import MoviesHeader from "./MoviesHeader"
 import TabList from '../../TabList';
 import ScrollUpButton from "react-scroll-up-button"
 import MoviesContent from './MoviesContent';
+import MovieTab from './MovieTabs';
 
 
 class Movies extends Component {
     constructor(props) {
         super(props);
         this.state = {activeTab: "movies"};
+        console.log(this.state.subTab)
+    }
+
+    componentDidMount() {
+        this.setState(() => {
+            return {subTab: this.props.subTab };
+        });  
     }
 
     render() {
         return(
             <div>
-                <MoviesHeader/>
+                <MoviesHeader subTab={this.state.subTab} />
                 <TabList activeTab={this.state.activeTab} />
-                <MoviesContent/>
+                <MovieTab subTab ={this.props.subTab} />
+                <MoviesContent subTab={this.props.subTab} />
                 <ScrollUpButton/>
             </div>
         );

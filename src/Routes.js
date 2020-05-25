@@ -31,8 +31,16 @@ export default function Routes() {
         <Guest/>
       </Route>
 
-      <Route exact path={SCOPE + "/movies"}>
-        <Movies/>
+      <Route exact path={SCOPE + "/movies/list"}>
+        <Movies subTab="movies"/>
+      </Route>
+
+      <Route exact path={SCOPE + "/movies/add"}>
+        <Movies subTab="add"/>
+      </Route>
+
+      <Route exact path={SCOPE + "/movies/create"}>
+        <Movies subTab="create"/>
       </Route>
     </Switch>
   );

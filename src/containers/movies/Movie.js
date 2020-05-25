@@ -9,6 +9,14 @@ class Movie extends Component {
         this.state = {}
 
         this.componentWillMount = this.componentWillMount.bind(this)
+        this.setModal = this.setModal.bind(this)
+    }
+
+
+    setModal() {
+        if (this.state.data) {
+            this.props.onClick(this.state.data);
+        }
     }
 
     componentWillMount() {
@@ -40,7 +48,7 @@ class Movie extends Component {
         const rating = "Rating: " + this.state.data.imdbRating;
         const alt = title+director+rating;
         return(
-            <div className="content_holder">
+            <div className="content_holder" onClick={this.setModal}>
                 <img className="img" src={this.state.data.Poster} alt={alt} />
             </div>
         );
