@@ -36,6 +36,8 @@ class AddMovie extends Component {
             }
         })
         .then ( (response) => {
+            let modified = response.data
+            modified.Lists = {All: "All"}
             firebase.database().ref('movies').child(imdbID).set(response.data)
             firebase.database().ref('lists').child("All").child(imdbID).set(imdbID)
         })

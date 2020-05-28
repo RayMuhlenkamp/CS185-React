@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Movie from "./Movie"
 import { Modal, Button } from 'react-bootstrap'
+import PaginateButton from './PaginateButton';
+import MyModalBody from './MyModalBody';
 
 import config from "../../config"
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../css/movies.css'
-import PaginateButton from './PaginateButton';
-import MyModalBody from './MyModalBody';
+
 
 const firebase = require('firebase')
 
@@ -30,12 +31,12 @@ class MovieList extends Component {
         this.handleShow = this.handleShow.bind(this)
         this.handleClose = this.handleClose.bind(this)
         this.handleChange = this.handleChange.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this)
         this.paginate = this.paginate.bind(this)
     }
 
     componentDidMount() {
-        console.log("componentdidmount")
         if (!firebase.apps.length) {
             firebase.initializeApp(config)
         }
@@ -97,6 +98,39 @@ class MovieList extends Component {
         this.setState((state) => {
             return {show: false}
         });
+    }
+
+    handleDelete(id) {
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config)
+        }
+
+        let newData = []
+        let ref = firebase.database().ref()
+        let pageRef = null
+
+        if (id === this.state.index || !this.state.index) {
+            this.setState({data: newData, index: null})
+            pageRef = ref.child("lists/"+this.state.currentList)
+                     .orderByKey()
+                     .limitToFirst(9)
+        } else {
+            pageRef = ref.child("lists/"+this.state.currentList)
+                     .orderByKey()
+                     .startAt(this.state.index)
+                     .limitToFirst(9)
+        }
+        
+        pageRef.once('value', snapshot => {
+            snapshot.forEach(childSnapshot => {
+                var key = childSnapshot.key;
+                ref.child("movies").child(key).once('value', movieSnapshot => {
+                    newData.push(movieSnapshot.val())
+                    this.setState ({data: newData})
+                })
+            })
+        })
+        this.setState({show: false})
     }
 
     handleChange(event) {
@@ -171,7 +205,7 @@ class MovieList extends Component {
                             <Modal.Title>{this.state.current.data.Title}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <MyModalBody data={this.state.current.data}/>
+                            <MyModalBody close={this.handleClose} totalLists={this.state.lists} data={this.state.current.data} delete={this.handleDelete}/>
                         </Modal.Body>
                     </Modal>
                 </div>

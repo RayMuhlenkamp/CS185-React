@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { moviesKEY } from '../../config'
-
-const axios = require("axios").default;
 
 class Movie extends Component {
     constructor(props) {

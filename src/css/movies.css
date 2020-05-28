@@ -25,10 +25,30 @@
 
 .myModal-body {
     display: grid;
+    grid-template-columns: 47.5% 5% 47.5%;
+    
 }
 
-.myModal-body > img {
+.myModal-left {
     grid-column: 1;
+}
+
+.myModal-left > img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.myModal-right {
+    grid-column: 3;
+}
+
+.myModal-buttons {
+    display: flex;
+}
+
+#delete {
+    margin-left: auto;
 }
 
 .add_form {

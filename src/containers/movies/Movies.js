@@ -10,7 +10,6 @@ class Movies extends Component {
     constructor(props) {
         super(props);
         this.state = {activeTab: "movies"};
-        console.log(this.props.subTab)
     }
 
     componentDidMount() {
