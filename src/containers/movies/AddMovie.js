@@ -1,39 +1,59 @@
 import React, { Component } from 'react';
 import '../../css/movies.css'
+import { moviesKEY } from '../../config'
+import config from "../../config"
 
+
+const axios = require("axios").default;
 const firebase = require('firebase')
 
 class AddMovie extends Component {
     constructor(props) {
         super(props);
-        this.state = {id: "",
-                      data: {}};
-        console.log(this.state)
+        this.state = {id: ""};
 
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    }
+        }
 
-    handleFormSubmit(event) {
+    handleFormSubmit = (event) => {
         event.preventDefault();
         if (this.state.id === '') {
             alert("Name must not be blank.")
             return;
         }
 
-        //firebase.database().ref('data').push().set(this.state)
+        const target = event.target[0];
+        const imdbID = target.value;
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config)
+        }
+
+        axios.get("https://www.omdbapi.com/" , {
+            params: {
+                apikey: moviesKEY,
+                i: imdbID
+            }
+        })
+        .then ( (response) => {
+            firebase.database().ref('movies').child(imdbID).set(response.data)
+            firebase.database().ref('lists').child("All").child(imdbID).set(imdbID)
+        })
+        .catch ( (error) => {
+            console.log(error);
+        })
         
-        this.setState({id: ''})
         alert("Successfully added")
+        
+
     }
 
     handleInputChange(event) {
         const target = event.target;
-        const name = target.name;
-        const value = target.value;
+        const id = target.value;
 
         this.setState({
-            [name]: value
+            id: id
         });
     }
     render () {

@@ -24,7 +24,11 @@
 }
 
 .myModal-body {
-    display: flex;
+    display: grid;
+}
+
+.myModal-body > img {
+    grid-column: 1;
 }
 
 .add_form {
@@ -75,4 +79,8 @@
 
 #search {
     margin-left: auto;
+}
+
+.paginate_button {
+    margin: 5px;
 }

@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import config from "../../config"
+
+
 import '../../css/movies.css'
+
+const firebase = require('firebase')
 
 class CreateList extends Component {
     constructor(props) {
         super(props);
         this.state = {name: "",
                       data: {}};
-        console.log(this.state)
-
+                      
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
@@ -19,7 +23,14 @@ class CreateList extends Component {
             return;
         }
 
-        //firebase.database().ref('data').push().set(this.state)
+        const target = event.target[0];
+        const listName = target.value;
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config)
+        }
+
+        firebase.database().ref('lists').child(listName).set("")
         
         this.setState({name: ''})
         alert("Successfully added")

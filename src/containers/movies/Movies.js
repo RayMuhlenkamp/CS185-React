@@ -10,7 +10,7 @@ class Movies extends Component {
     constructor(props) {
         super(props);
         this.state = {activeTab: "movies"};
-        console.log(this.state.subTab)
+        console.log(this.props.subTab)
     }
 
     componentDidMount() {
@@ -22,7 +22,7 @@ class Movies extends Component {
     render() {
         return(
             <div>
-                <MoviesHeader subTab={this.state.subTab} />
+                <MoviesHeader subTab={this.props.subTab} />
                 <TabList activeTab={this.state.activeTab} />
                 <MovieTab subTab ={this.props.subTab} />
                 <MoviesContent subTab={this.props.subTab} />

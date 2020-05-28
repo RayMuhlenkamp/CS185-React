@@ -1,34 +1,92 @@
 import React, { Component } from 'react';
 import Movie from "./Movie"
-import { Modal } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
+
+import config from "../../config"
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../css/movies.css'
-import DropdownToggle from 'react-bootstrap/DropdownToggle';
-import DropdownMenu from 'react-bootstrap/DropdownMenu';
-import DropdownItem from 'react-bootstrap/DropdownItem';
+import PaginateButton from './PaginateButton';
+import MyModalBody from './MyModalBody';
 
-const IDs = ["tt0446029", "tt1659337", "tt2584384", "tt0111161", "tt0102926", 
-             "tt0407887", "tt1853728", "tt0120601"]
+const firebase = require('firebase')
 
 class MovieList extends Component {
     constructor(props) {
         super(props);
         this.state = {show: false,
+                      data: [],
                       current: {data: {Title: "",
                                        imdbRating: "",
                                        Poster: "",
                                        Plot: "",
                                        Director: "",
                                        Awards: "" }},
-                      currentList: "All"};
+                      lists: ["All", "Watched", "Watch List"],
+                      currentList: "All",
+                      index: null
+                    };
 
         this.handleShow = this.handleShow.bind(this)
         this.handleClose = this.handleClose.bind(this)
         this.handleChange = this.handleChange.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this)
+        this.paginate = this.paginate.bind(this)
+    }
+
+    componentDidMount() {
+        console.log("componentdidmount")
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config)
+        }
+        let newData = []
+        let ref = firebase.database().ref()
+        let pageRef = null                             
+        if (!this.state.index) {
+            pageRef = ref.child("lists/"+this.state.currentList)
+                     .orderByKey()
+                     .limitToFirst(9)
+        } else {
+            pageRef = ref.child("lists/"+this.state.currentList)
+                     .orderByKey()
+                     .startAt(this.state.index)
+                     .limitToFirst(9)
+        }
+        
+        pageRef.once('value', snapshot => {
+            snapshot.forEach(childSnapshot => {
+                var key = childSnapshot.key;
+                ref.child("movies").child(key).once('value', movieSnapshot => {
+                    newData.push(movieSnapshot.val())
+                    this.setState ({data: newData})
+                })
+            })
+        })
+    }
+
+    paginate(){
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config)
+        }
+        let newData = []
+        let ref = firebase.database().ref()
+        let pageRef =  ref.child("lists/"+this.state.currentList)
+                     .orderByKey()
+                     .startAt(this.state.data[8].imdbID)
+                     .limitToFirst(9)
+        
+        pageRef.once('value', snapshot => {
+            snapshot.forEach(childSnapshot => {
+                var key = childSnapshot.key;
+                ref.child("movies").child(key).once('value', movieSnapshot => {
+                    newData.push(movieSnapshot.val())
+                    this.setState ({data: newData})
+                })
+            })
+        })
     }
 
     handleShow(data) {
-        console.log("showModal")
         this.setState((state) => {
             return {show: true,
                     current: {data}}
@@ -36,7 +94,6 @@ class MovieList extends Component {
     }
 
     handleClose() {
-        console.log("hideModal")
         this.setState((state) => {
             return {show: false}
         });
@@ -44,21 +101,51 @@ class MovieList extends Component {
 
     handleChange(event) {
         var value = event.target.value;
-        this.setState((state) => {
-            return {currentList: value}
+
+        this.setState({currentList: value})
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config)
+        }
+
+        let newData = []
+        this.setState({data:newData})
+
+        let ref = firebase.database().ref()
+        let pageRef = null
+        if (!this.state.index) {
+            pageRef = ref.child("lists/"+value)
+                     .orderByKey()
+                     .limitToFirst(9)
+        } else {
+            pageRef = ref.child("lists/"+value)
+                     .orderByKey()
+                     .startAt(this.state.index)
+                     .limitToFirst(9)
+        }
+        
+        pageRef.once('value', snapshot => {
+            snapshot.forEach(childSnapshot => {
+                var key = childSnapshot.key;
+                ref.child("movies").child(key).once('value', movieSnapshot => {
+                    newData.push(movieSnapshot.val())
+                    this.setState ({data: newData})
+                })
+            })
         })
     }
 
     render() {
+
+        if (!this.state.data) return null;
         return (
             <div className="movies_body">
                 <div className="top_bar">
                     <form>
                         <select value={this.state.currentList} onChange={this.handleChange}>
-                            {/*This is where we should map the lists as options from firebase*/}
-                            <option value="all">All</option>
-                            <option value="watched">Watched</option>
-                            <option value="watchlist">Watch List</option>
+                            {this.state.lists.map((item) => (
+                                <option value={item}>{item}</option>
+                            ))}
                         </select>
                     </form>
                     <form id="search">
@@ -69,9 +156,14 @@ class MovieList extends Component {
                     </form>
                 </div>
                 <div className="content_grid">
-                    {IDs.map((item) => (
-                            <Movie id={item} onClick={this.handleShow}/>
-                        ))}
+                    <Movie data={this.state.data.length > 0 ? this.state.data[0] : null} onClick={this.handleShow}/>
+                    <Movie data={this.state.data.length > 1 ? this.state.data[1] : null} onClick={this.handleShow}/>
+                    <Movie data={this.state.data.length > 2 ? this.state.data[2] : null} onClick={this.handleShow}/>
+                    <Movie data={this.state.data.length > 3 ? this.state.data[3] : null} onClick={this.handleShow}/>
+                    <Movie data={this.state.data.length > 4 ? this.state.data[4] : null} onClick={this.handleShow}/>
+                    <Movie data={this.state.data.length > 5 ? this.state.data[5] : null} onClick={this.handleShow}/>
+                    <Movie data={this.state.data.length > 6 ? this.state.data[6] : null} onClick={this.handleShow}/>
+                    <Movie data={this.state.data.length > 7 ? this.state.data[7] : null} onClick={this.handleShow}/>
                 </div>
                 <div>
                     <Modal show={this.state.show} onHide={this.handleClose} centered>
@@ -79,13 +171,12 @@ class MovieList extends Component {
                             <Modal.Title>{this.state.current.data.Title}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <div className="myModal-body">
-                                <img src={this.state.current.data.Poster}/>
-                                {this.state.current.data.imdbRating}
-                            </div>
+                            <MyModalBody data={this.state.current.data}/>
                         </Modal.Body>
                     </Modal>
                 </div>
+
+                <PaginateButton show={this.state.data.length > 8} callback={this.paginate}/>
             </div>
         )
     }
