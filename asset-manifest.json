@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/cs185-react/static/css/main.26b01d8b.chunk.css",
-    "main.js": "/cs185-react/static/js/main.0925a019.chunk.js",
-    "main.js.map": "/cs185-react/static/js/main.0925a019.chunk.js.map",
+    "main.css": "/cs185-react/static/css/main.2e078b4d.chunk.css",
+    "main.js": "/cs185-react/static/js/main.850ad908.chunk.js",
+    "main.js.map": "/cs185-react/static/js/main.850ad908.chunk.js.map",
     "runtime-main.js": "/cs185-react/static/js/runtime-main.f225555f.js",
     "runtime-main.js.map": "/cs185-react/static/js/runtime-main.f225555f.js.map",
-    "static/js/2.36f958f2.chunk.js": "/cs185-react/static/js/2.36f958f2.chunk.js",
-    "static/js/2.36f958f2.chunk.js.map": "/cs185-react/static/js/2.36f958f2.chunk.js.map",
+    "static/css/2.4819d237.chunk.css": "/cs185-react/static/css/2.4819d237.chunk.css",
+    "static/js/2.45efe54a.chunk.js": "/cs185-react/static/js/2.45efe54a.chunk.js",
+    "static/js/2.45efe54a.chunk.js.map": "/cs185-react/static/js/2.45efe54a.chunk.js.map",
     "index.html": "/cs185-react/index.html",
-    "precache-manifest.6092728850d5e1b02f9c560f37c456b2.js": "/cs185-react/precache-manifest.6092728850d5e1b02f9c560f37c456b2.js",
+    "precache-manifest.363699eb578016b6e24491bbcc208d1a.js": "/cs185-react/precache-manifest.363699eb578016b6e24491bbcc208d1a.js",
     "service-worker.js": "/cs185-react/service-worker.js",
-    "static/css/main.26b01d8b.chunk.css.map": "/cs185-react/static/css/main.26b01d8b.chunk.css.map",
-    "static/js/2.36f958f2.chunk.js.LICENSE.txt": "/cs185-react/static/js/2.36f958f2.chunk.js.LICENSE.txt",
+    "static/css/2.4819d237.chunk.css.map": "/cs185-react/static/css/2.4819d237.chunk.css.map",
+    "static/css/main.2e078b4d.chunk.css.map": "/cs185-react/static/css/main.2e078b4d.chunk.css.map",
+    "static/js/2.45efe54a.chunk.js.LICENSE.txt": "/cs185-react/static/js/2.45efe54a.chunk.js.LICENSE.txt",
     "static/media/IMG_1328.MOV": "/cs185-react/static/media/IMG_1328.9ccd2235.MOV",
     "static/media/catsper.mp4": "/cs185-react/static/media/catsper.23045880.mp4",
     "static/media/facekick.mp4": "/cs185-react/static/media/facekick.113ddc20.mp4",
@@ -34,8 +36,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.f225555f.js",
-    "static/js/2.36f958f2.chunk.js",
-    "static/css/main.26b01d8b.chunk.css",
-    "static/js/main.0925a019.chunk.js"
+    "static/css/2.4819d237.chunk.css",
+    "static/js/2.45efe54a.chunk.js",
+    "static/css/main.2e078b4d.chunk.css",
+    "static/js/main.850ad908.chunk.js"
   ]
 }
