@@ -30,10 +30,16 @@ class CreateList extends Component {
             firebase.initializeApp(config)
         }
 
-        firebase.database().ref('lists').child(listName).set("")
+        try {
+            firebase.database().ref('lists').child(listName).set("")
+            this.setState({name: ''})
+            alert("Successfully added")
+        } catch (error) {
+            alert("Sorry, something went wrong with that list name. Please try again.")
+            this.setState({name: ''})
+        }
         
-        this.setState({name: ''})
-        alert("Successfully added")
+        
     }
 
     handleInputChange(event) {

@@ -23,25 +23,38 @@ class MovieList extends Component {
                                        Plot: "",
                                        Director: "",
                                        Awards: "" }},
-                      lists: ["All", "Watched", "Watch List"],
+                      lists: [],
                       currentList: "All",
-                      index: null
+                      index: null,
+                      value: ""
                     };
 
         this.handleShow = this.handleShow.bind(this)
         this.handleClose = this.handleClose.bind(this)
         this.handleChange = this.handleChange.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.searchChange = this.searchChange.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this)
         this.paginate = this.paginate.bind(this)
+
     }
 
     componentDidMount() {
         if (!firebase.apps.length) {
             firebase.initializeApp(config)
         }
+
         let newData = []
         let ref = firebase.database().ref()
+        let lists = []
+        ref.child("lists").once('value', listSnapshot => {
+            listSnapshot.forEach(child => {
+                const key = child.key
+                lists.push(key)
+            })
+            this.setState({lists: lists})
+        })
         let pageRef = null                             
         if (!this.state.index) {
             pageRef = ref.child("lists/"+this.state.currentList)
@@ -169,6 +182,33 @@ class MovieList extends Component {
         })
     }
 
+    handleSearch(event) {
+        event.preventDefault();
+        const search = this.state.search;
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(config)
+        }
+        let newData = []
+        let ref = firebase.database().ref()
+        ref.child("movies").orderByChild("Title").equalTo(search).once('value', snapshot => {
+            snapshot.forEach(movie => newData.push(movie.val()))
+            if(newData.length > 0) { 
+                this.setState({data: newData, search: "", currentList: "All"})
+            } else {
+                alert("Movie not found")
+                this.setState({search: ""})
+
+            } 
+            
+        })
+    }
+
+    searchChange(event) {
+        const value = event.target.value;
+        this.setState({search: value})
+    }
+
     render() {
 
         if (!this.state.data) return null;
@@ -182,10 +222,10 @@ class MovieList extends Component {
                             ))}
                         </select>
                     </form>
-                    <form id="search">
+                    <form id="search" onSubmit={this.handleSearch}>
                         <label>
                             Search for a movie:
-                            <input type="text"></input>
+                            <input onChange={this.searchChange} value={this.state.search}type="text"></input>
                         </label>
                     </form>
                 </div>

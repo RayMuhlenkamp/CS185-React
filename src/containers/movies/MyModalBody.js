@@ -27,9 +27,6 @@ class MyModalBody extends Component {
         let newListsToDropdown = this.state.lists.filter(list => list !== item)
         let newListsToFirebase = this.state.data.Lists
         newListsToFirebase[item] = item       
-
-        console.log(newListsToDropdown)
-        console.log(newListsToFirebase)
         
         if (!firebase.apps.length) {
             firebase.initializeApp(config)

@@ -37,15 +37,23 @@ class AddMovie extends Component {
         })
         .then ( (response) => {
             let modified = response.data
-            modified.Lists = {All: "All"}
-            firebase.database().ref('movies').child(imdbID).set(response.data)
-            firebase.database().ref('lists').child("All").child(imdbID).set(imdbID)
+            if (modified.Response === "True") {
+                modified.Lists = {All: "All"}
+                firebase.database().ref('movies').child(imdbID).set(response.data)
+                firebase.database().ref('lists').child("All").child(imdbID).set(imdbID)
+                alert("Successfully added")
+                this.setState({id: ""})
+            } else {
+                alert("That doesn't seem right. Try entering a correct imdbID.")
+                this.setState({id: ""})
+            }
+            
         })
         .catch ( (error) => {
             console.log(error);
+            this.setState({id: ""})
         })
         
-        alert("Successfully added")
         
 
     }
