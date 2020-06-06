@@ -9,6 +9,7 @@ class MovieTab extends Component {
         var movies=""
         var add = ""
         var create = ""
+        var graph = ""
         switch (this.props.subTab) {
             case "add":
                 add = "active"
@@ -19,6 +20,9 @@ class MovieTab extends Component {
             case "movies":
                 movies = "active"
                 break;
+            case "graph":
+                graph = "active"
+                break;
             default:
         }
 
@@ -27,6 +31,7 @@ class MovieTab extends Component {
                 <div className="nav_split"><br/></div>
                 <div className="sub_nav_bar">
                     <Link className={movies} to={SCOPE+"/list"}>Movies</Link>
+                    <Link className={graph} to={SCOPE+"/graph"}>Graph</Link>
                     <Link className={add} to={SCOPE+"/add"}>Add Movie</Link>
                     <Link className={create} to={SCOPE+"/create"}>Create List</Link>
                 </div>
