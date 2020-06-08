@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Movie from "./Movie"
+import GraphContent from './GraphContent';
 
 import config from "../../config"
 
@@ -10,6 +10,7 @@ const firebase = require('firebase')
 class Graph extends Component {
     constructor(props) {
         super(props);
+        // group 1 = films, 2 = actors
         this.state = {nodes: [],
                       links: []}
 
@@ -32,14 +33,14 @@ class Graph extends Component {
                 ref.child("movies/"+key).once('value', film =>{
                     const value = film.val()
                     filmActors = value.Actors.split(", ")
-                    filmNode = {name: value.Title, type: "movie", poster: value.Poster}
+                    filmNode = {name: value.Title, group: 1, poster: value.Poster, id: value.imdbID}
                     filmIndex = newNodes.push(filmNode) - 1
                     filmActors.forEach(actor => {
-                        actorNode = {name: actor, type: "actor"}
+                        actorNode = {name: actor, group: 2}
                         if (!newNodes.some(({name}) => name === actorNode.name)) {
                             actorIndex = newNodes.push(actorNode) - 1
                         } else actorIndex = newNodes.findIndex(n => n.name === actorNode.name)
-                        newLinks.push({source: actorIndex, target: filmIndex})
+                        newLinks.push({source: actorIndex, target: filmIndex, value: 1})
                     })
                     this.setState({nodes: newNodes,
                                    links: newLinks})
@@ -51,9 +52,16 @@ class Graph extends Component {
     }
 
     render() {
+        var nodes = this.state.nodes;
+        var links = this.state.links;
+
+        if (nodes.length === 0 || links.length === 0){
+            return null;
+        }
+        
         return(
             <div>
-                
+                <GraphContent nodes={nodes} links={links}/>
             </div>
         )
     }
